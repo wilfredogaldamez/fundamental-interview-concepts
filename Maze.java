@@ -17,7 +17,7 @@ public class Maze {
 		int height = mat.length;
 		int width = mat[0].length;
 		
-		boolean visited[][] = new boolean[width][height];
+		boolean visited[][] = new boolean[height][width];
 		visited[0][0] = true;
 		
 		Queue<int[]> q = new LinkedList<>();
@@ -31,6 +31,7 @@ public class Maze {
 			temp = q.peek();
 			System.out.println(temp[0] + " " + temp[1]);
 			if (mat[temp[0]][temp[1]] == 9) {
+				System.out.println("9 is located at " + temp[0] + " " + temp[1]);
 				return count;
 			}
 			
@@ -40,9 +41,8 @@ public class Maze {
 				int row = temp[0] + rowNum[i];
 				int col = temp[1] + colNum[i];
 				
-				if (isValid(row, col, width, height) && mat[row][col] == 1 && !visited[row][col]) {
+				if (isValid(row, col, width, height) && mat[row][col] != 0 && !visited[row][col]) {
 					visited[row][col] = true;
-					System.out.println(row + " " + col);
 					q.add(new int[] {row, col});
 				}
 				
